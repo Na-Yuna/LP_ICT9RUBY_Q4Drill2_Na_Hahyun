@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 1</title>
+
+    <style>
+
+        /* Body */
+        body{
+            font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        /* Box */
+        .box{
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 0 12px rgba(0,0,0,0.2);
+            width:90%;
+            max-width:420px;
+        }
+
+        /* Header */
+        h2{
+            color:rgb(255,100,39);
+            text-align:center;
+        }
+
+        /* Inputs */
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border-radius:5px;
+            border:1px solid #ccc;
+        }
+
+        /* Button */
+        button{
+            width:100%;
+            padding:12px;
+            background-color:rgb(255,100,39);
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background-color:rgb(220,80,20);
+        }
+
+        /* Result */
+        .result{
+            margin-top:20px;
+            padding:10px;
+            background:#f4f4f4;
+            border-radius:6px;
+        }
+
+        .note{
+            font-weight:200;
+            font-size:14px;
+            font-family: Arial;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>Heat Index Checker</h2>
+
+        <details ontoggle="myFunction()">
+        <summary><b>Note:</b></summary>
+        <p class="note">Input the temperature (°C) and humidity (%), then click Check to see the heat index and its status.</p>
+        </details>
+
+        <br>
+
+        <label>Degree in (°C)</label>
+        <input type="number" id="temp" placeholder="Input degree value">
+
+        <label>Humidity in (%)</label>
+        <input type="number" id="humidity" placeholder="Input percentage value">
+
+        <button onclick="checkHeat()">Check</button>
+
+        <div class="result">
+            <p id="displayHeat"></p>
+            <p id="displayStatus"></p>
+        </div>
+
+    </div>
+
+    <script>
+
+        // ontoggle function
+        function myFunction(){
+            alert("Enter temperature and humidity then click CHECK.");
+        }
+
+        // main function
+        function checkHeat(){
+
+            // Get the input values and convert them to numbers
+            let temperature = parseFloat(document.getElementById("temp").value);
+            let humidity = parseFloat(document.getElementById("humidity").value);
+
+            // If the user forgot to input either temperature or humidity, an alert will pop up.
+            if(isNaN(temperature) || isNaN(humidity)){
+                alert("Please enter both temperature and humidity.");
+                return;
+            }
+
+            // Calculate the heat index using the formula: HI = T + (0.33 * H) - 4
+            let heatIndex = temperature + (0.33 * humidity) - 4;
+
+            // Determine the status based on the heat index value
+            let status = "";
+
+            // The heat index status is categorized as follows:
+            if (heatIndex <= 27){
+                status = "Comfortable / Cool";
+            }
+
+            else if (heatIndex > 27 && heatIndex <= 32){
+                status = "Warm";
+            }
+
+            else if (heatIndex > 32 && heatIndex <= 37){
+                status = "Hot";
+            }
+
+            else if (heatIndex > 37 && heatIndex <= 41){
+                status = "Very Hot / Caution";
+            }
+
+            else{
+                status = "Extreme Heat / Danger";
+            }
+
+            // Display the heat index and its status on the webpage
+            document.getElementById("displayHeat").innerHTML =
+                "Heat Index: <b>" + heatIndex.toFixed(2) + "°C</b>";
+
+            // Display the status of the heat index
+            document.getElementById("displayStatus").innerHTML =
+                "Status: <b>" + status + "</b>";
+
+            alert(
+                "Heat Index: " + heatIndex.toFixed(2) + "°C\n" +
+                "Status: " + status
+            );
+        }
+
+    </script>
+
+</body>
+</html>
