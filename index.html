@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Head -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title -->
     <title>Q4 Drill 1</title>
 
+    <!-- Styles -->
     <style>
 
         /* Body */
@@ -58,6 +63,7 @@
             font-size:16px;
         }
 
+        /* Button Hover (when hovered the color changes) */
         button:hover{
             background-color:rgb(220,80,20);
         }
@@ -70,6 +76,7 @@
             border-radius:6px;
         }
 
+        /* Note */
         .note{
             font-weight:200;
             font-size:14px;
@@ -79,27 +86,36 @@
     </style>
 </head>
 
+<!-- Body -->
 <body>
 
+    <!-- Main Container -->
     <div class="box">
 
+        <!-- Header -->
         <h2>Heat Index Checker</h2>
 
+        <!-- Note -->
         <details ontoggle="myFunction()">
         <summary><b>Note:</b></summary>
         <p class="note">Input the temperature (°C) and humidity (%), then click Check to see the heat index and its status.</p>
         </details>
 
+        <!-- Break -->
         <br>
 
+        <!-- Temperature Input -->
         <label>Degree in (°C)</label>
         <input type="number" id="temp" placeholder="Input degree value">
 
+        <!-- Humidity Input -->
         <label>Humidity in (%)</label>
         <input type="number" id="humidity" placeholder="Input percentage value">
 
+        <!-- Check Button -->
         <button onclick="checkHeat()">Check</button>
 
+        <!-- Result Display -->
         <div class="result">
             <p id="displayHeat"></p>
             <p id="displayStatus"></p>
@@ -107,14 +123,15 @@
 
     </div>
 
+    <!-- Script -->
     <script>
 
-        // ontoggle function
+        // Function to show alert when the user clicks the note
         function myFunction(){
             alert("Enter temperature and humidity then click CHECK.");
         }
 
-        // main function
+        // Function to check heat index and its status
         function checkHeat(){
 
             // Get the input values and convert them to numbers
@@ -162,11 +179,16 @@
             document.getElementById("displayStatus").innerHTML =
                 "Status: <b>" + status + "</b>";
 
+            // Also show an alert with the heat index and its status
             alert(
                 "Heat Index: " + heatIndex.toFixed(2) + "°C\n" +
                 "Status: " + status
             );
         }
+    </script>
+
+</body>
+</html>
 
     </script>
 
